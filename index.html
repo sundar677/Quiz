@@ -3,68 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Objective Questions</title>
+    <title>Login</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            padding: 20PX;
-        }
-        .quiz-container {
-            background: #fff;
-            max-width: 600px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgb(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #ac1313;
-        }
-        
-        input[type="radio"] {
-            margin-right: 10px;
-        }
-        input[type="submit"] {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 20px auto 0;
-        }
-        input[type="submit"]:hover {
-            background-color: #218838;
+            font-family: sans-serif; margin: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="quiz container">
-    <h1>Some Objective Questions</h1>
-    <form>
-        <h3>1. What is the capital on india?</h3>
-        <label><input type="radio" name="q1" value="A"> A. Mumbai</label><br>
-        <label><input type="radio" name="q1" value="B"> B. Delhi</label><br>
-        <label><input type="radio" name="q1" value="C"> C. Kolkata</label><br>
-        <label><input type="radio" name="q1" value="D"> D. Maharastra</label><br><br>
-
-        <h3>2. What plant is known a the red planet?</h3>
-        <label><input type="radio" name="q2" value="A"> A. Earth</label><br>
-        <label><input type="radio" name="q2" value="B"> B. Jupiter</label><br>
-        <label><input type="radio" name="q2" value="C"> C. Mars</label><br>
-        <label><input type="radio" name="q2" value="D"> D. Venus</label><br><br>
-
-        <h3>3. Who wrote the Ramayana?</h3>
-        <label><input type="radio" name="q3" value="A"> A. Kalidas</label><br>
-        <label><input type="radio" name="q3" value="B"> B. Valmiki</label><br>
-        <label><input type="radio" name="q3" value="C"> C. Tulsidas</label><br>
-        <label><input type="radio" name="q3" value="D"> D. Ved Vyas</label><br><br>
-
-        <input type="submit" value="submit">
+    <h2>Login and start</h2>
+    <form onsubmit="return loginUser()">
+        <label>Enter your name</label><br><br>
+        <input type="text" id="username" required>
+        <button type="submit">Login</button>
     </form>
-</div>
 
+    <script>
+        function loginUser() {
+            const name = document.getElementById('username').value;
+            localStorage.serItem("quizUser", name);
+            window.lcation.href = "quiz.html";
+            return false;
+        }
+    </script>
 </body>
 </html>

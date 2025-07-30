@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Questions</title>
+    <style>
+        body {font-family: Arial, sans-serif; margin: 20px;}
+        .header {display: flex; justify-content: space-between; margin-bottom: 20px;}
+        .timer {font-weight: bold; color:red;}
+        .question {margin-bottom: 15px;}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div><strong>Name:</strong> <span id="userName"></span></div>
+        <div><strong>Date:</strong> <span id="currentDate"></span></div>
+        <div><strong>Timer:</strong> <span class="timer" id="timer">00:00</span></div>
+    </div>
+    <div id="quizSection">
+        <div class="question">
+            <p>1. What is the capital of india?</p>
+            <input type="radio" Name="q1" value="Mumbai">Mumbai<br>
+            <input type="radio" Name="q1" value="Delhi">Delhi<br>
+            <input type="radio" Name="q1" value="Kolkata">Kolkata<br>
+            <input type="radio" Name="q1" value="channai">channai<br>
+        </div>
+        <div class="question">
+            <p>2. Who is the current chief minister of Jharkhand?</p>
+            <input type="radio" Name="q2" value="Mumbai">Narendra modi<br>
+            <input type="radio" Name="q2" value="Delhi">Hemant soren<br>
+            <input type="radio" Name="q2" value="Kolkata">Champai soren<br>
+            <input type="radio" Name="q2" value="channai">Rahul gandhi<br>
+        </div>
+        <div>
+            <p class="question">2. What is the hard?</p>
+            <input type="radio" Name="q3" value="Mumbai">Mumbai<br>
+            <input type="radio" Name="q3" value="Delhi">Delhi<br>
+            <input type="radio" Name="q3" value="Kolkata">Kolkata<br>
+            <input type="radio" Name="q3" value="channai">channai<br>
+        </div><br>
+        <button onclick="submitQuiz()">Submit</button>
+    </div>
+
+    <script>
+        document.getElementById("userName").textContent =
+        localStorage.getItem("quizUser");
+        const today = new Date();
+        document.getElementById("currentDate").textContent = 
+        today.toLocalDateString();
+
+         let time = 0;
+         setInterval(() => {
+            time++;
+            const mins = String(Math.floor(time / 60)).padStart(2, '0');
+            const secs = String(time % 60).padStart(2, '0');
+            document.getElementById("timer").textContent = '${mins}:${secs}';
+          }, 1000);
+          function submitQuiz() {
+            const answers = {
+                q1: "Delhi",
+                q2: "Hemant soren"
+            };
+            const userAnswers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value || "",
+                q2: document.querySelector('input[name="q2"]:checked')?.value || ""
+            };
+            const result = [];
+            
+            for (const q in answers) {
+                result.push ({
+                    question: q,
+                    correct: answer[q],
+                    selected: userAnswers[q],
+                    isCorrect: userAnswers[q] === answers[q]
+                });
+            }
+            localStorage.setItem("quizResult", JSON.stringfy(result));
+            window.location.href = "result.html";
+          }
+    </script>
+    </form>
+</div>
+
+</body>
+</html>

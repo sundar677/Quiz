@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {font-size: Arial; margin: 20px;}
+        .correct {color: green;}
+        .wrong {color:red;}
+    </style>
+</head>
+<body>
+    <h2>Result <span id="userName"></span></h2>
+    <div id="resultContainer"></div>
+
+    <script>
+        document.getElementById("userName").textContent =
+        localStorage.getItem("quizUser");
+
+        const result = JSON.parse(localStorage.getItem("quizResult"));
+        const questionTexts = {
+        q1: "1.What is the capital of india?",
+        q2: "who is the current chief minister of Jharkhand?"};
+
+        const container =document.getElementById("resultContainer");
+        
+        result.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.innerHTML = `<p>
+                <strong>${questionTexts[item.question]}</strong><br>
+                Your answer: <span class="${item.isCorrect ? 'correct' : 'wrong'}">$
+                    {item.selected || 'No answer'}</span><br>
+                    Correct answer: <span class="correct">$(item.correct)</span><br>
+                    </p><hr>`;
+                    container.appendchild(div);});
+    </script>
+</body>
+</html>
